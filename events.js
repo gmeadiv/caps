@@ -16,6 +16,7 @@ ee.on('delivered', (event) => {
   console.log('EVENT', event);
 
 });
+ee.on('delivered', delivered);
 
 // DRIVER DELIVERS ORDER
 ee.on('in-transit', (event) => {
@@ -33,6 +34,7 @@ ee.on('in-transit', (event) => {
   });
 
 });
+ee.on('in-transit', inTransit);
 
 //DRIVER PICKS ORDER UP
 ee.on('pickup', (event) => {
@@ -49,6 +51,7 @@ ee.on('pickup', (event) => {
     payload: deliveryDetails
   });
 });
+ee.on('pickup', pickup);
 
 // VENDOR CREATES A PICKUP ORDER
 ee.on('order', (event) => {
@@ -66,6 +69,7 @@ ee.on('order', (event) => {
     }
   });
 });
+ee.on('order', order);
 
 
 // CUSTOMER CREATES ORDER
@@ -75,3 +79,28 @@ ee.emit('order', {
   customer: randomCustomer,
   address: randomAddress
 });
+
+// TEST FUNCTIONS
+function order( payload ) {
+  console.log(payload, '<-- ORDER TEST PASSED')
+
+  return payload;
+}
+
+function pickup( payload ) {
+  console.log(payload, '<-- PICKUP TEST PASSED')
+
+  return payload;
+}
+
+function inTransit( payload ) {
+  console.log(payload, '<-- IN TRANSIT TEST PASSED')
+
+  return payload;
+}
+
+function delivered( payload ) {
+  console.log(payload, '<-- DELIVERED TEST PASSED')
+
+  return payload;
+}
