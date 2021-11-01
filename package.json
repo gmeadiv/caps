@@ -1,0 +1,35 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "EventEmitter.js",
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js",
+    "init:config": "sequelize init:config",
+    "db:create": "sequelize db:create",
+    "test-watch": "NODE_ENV=test jest --watchAll",
+    "test": "NODE_ENV=test jest --verbose --coverage --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmeadiv/caps.git"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmeadiv/caps/issues"
+  },
+  "homepage": "https://github.com/gmeadiv/caps#readme",
+  "dependencies": {
+    "jest": "^27.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "supertest": "^6.1.6"
+  }
+}
