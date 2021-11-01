@@ -34,7 +34,7 @@ ee.on('in-transit', (event) => {
 
 });
 
-//DRIVER PICKS ORDER UP
+// DRIVER PICKS UP ORDER
 ee.on('pickup', (event) => {
   
   console.log('EVENT', event);
@@ -50,7 +50,7 @@ ee.on('pickup', (event) => {
   });
 });
 
-// VENDOR CREATES A PICKUP ORDER
+// VENDOR CREATES A PICKUP EVENT
 ee.on('order', (event) => {
 
   const order = event;
