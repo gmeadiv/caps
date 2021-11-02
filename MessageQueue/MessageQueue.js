@@ -13,7 +13,8 @@ class MessageQueue {
 
     } else {
 
-      this.messages[clientId].push([message]);
+      // this.messages[clientId].push([message]);
+      this.messages[clientId].unshift(message);
 
     }
   }
@@ -24,24 +25,27 @@ class MessageQueue {
 
       let queue = this.messages[clientId];
 
-      let front = queue.peek();
+      let front = queue[queue.length - 1];
 
       if (front === message) {
 
-       queue.dequeue();
+       queue.pop();
+
        return;
 
       } else {
 
-        throw new Error ('Invalid Message Receipt');
+        throw new Error ('Invalid Message Receipt 2');
   
       }
 
     } else {
 
-      throw new Error ('Invalid Message Receipt');
+      throw new Error ('Invalid Message Receipt 1');
 
     }
 
   }
 }
+
+module.exports = MessageQueue;

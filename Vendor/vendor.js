@@ -3,14 +3,14 @@
 const caps = require('../Hub/events.js');
 
 const faker = require('faker');
+const logDelivery = require('./log-delivery.js');
 
-const randomTime = faker.date.soon();
 const randomStore = faker.company.companyName();
 const randomId = faker.random.alphaNumeric(15);
 const randomCustomer = faker.name.findName();
 const randomAddress = faker.address.streetAddress();
 
-// caps.on('delivered');
+caps.on('delivered', logDelivery);
 
 function pickup(storeName) {
   let payload = {
@@ -20,7 +20,7 @@ function pickup(storeName) {
     address: randomAddress
   }
 
-  console.log(payload)
+  caps.emit('pickup', payload)
 }
 
-pickup(randomStore);
+pickup(`${randomStore}`);
