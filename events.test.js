@@ -2,6 +2,9 @@
 
 const ee = require('./EventEmitter.js');
 
+const faker = require('faker');
+const randomTime = faker.date.soon();
+
 console.log = jest.fn();
 
 ee.on('delivered', (event) => {
