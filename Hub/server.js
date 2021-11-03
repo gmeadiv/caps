@@ -1,11 +1,24 @@
 'use strict';
 
-const caps = require('./events.js');
-const logEvent = require('./log-event.js');
+const socketio = require('socket.io');
+const PORT = 3000;
+const server = socketio(PORT);
+const messages = server.of('/messages');
 
-caps.on('pickup', logEvent(pickup));
-caps.on('in-transit', logEvent('in-transit'));
-caps.on('delivered', logEvent('delivered'));
+messages.on('connection', (socket) => {
+  console.log('Socket is connected', socket.id);
+
+  socket.on('pickup', logEvent('pickup'), (payload) => {
+    console.log(payload);
+
+    messages.emit('received', {
+      id: socket.id,
+      payload
+    })
+  })
+})
+
+const logEvent = require('./log-event.js');
 
 require('../Driver/driver.js');
 require('../Vendor/vendor.js');

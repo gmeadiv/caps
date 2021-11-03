@@ -1,26 +1,19 @@
 'use strict';
 
-const caps = require('../Hub/events.js');
-
 const faker = require('faker');
-const logDelivery = require('./log-delivery.js');
-
 const randomStore = faker.company.companyName();
-const randomId = faker.random.alphaNumeric(15);
+const randomId = faker.datatype.uuid();
 const randomCustomer = faker.name.findName();
-const randomAddress = faker.address.streetAddress();
+const randomAddress = `${faker.address.streetAddress()} ${faker.address.city()}, ${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
 
-caps.on('delivered', logDelivery);
+const client = require('socket.io-client');
 
-function pickup(storeName) {
-  let payload = {
-    store: storeName,
-    orderId: randomId,
-    customer: randomCustomer,
-    address: randomAddress
-  }
+const messageClient = client.connect('http://localhost:3000/messages');
 
-  caps.emit('pickup', payload)
-}
-
-pickup(`${randomStore}`);
+messageClient.emit('pickup', {payload: {
+  store: randomStore,
+  orderId: randomId,
+  customer: randomCustomer,
+  address: randomAddress
+}});
+messageClient.on('received', console.log);
