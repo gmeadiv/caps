@@ -10,10 +10,10 @@ const client = require('socket.io-client');
 
 const messageClient = client.connect('http://localhost:3000/messages');
 
-messageClient.emit('pickup', {payload: {
+messageClient.emit('pickup', {
   store: randomStore,
   orderId: randomId,
   customer: randomCustomer,
   address: randomAddress
-}});
+});
 messageClient.on('received', console.log);
