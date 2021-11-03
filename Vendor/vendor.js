@@ -8,7 +8,7 @@ const randomAddress = `${faker.address.streetAddress()} ${faker.address.city()},
 
 const client = require('socket.io-client');
 
-const messageClient = client.connect('http://localhost:3000/messages');
+const messageClient = client.connect('http://localhost:3000/vendor');
 
 messageClient.emit('pickup', {
   store: randomStore,
@@ -16,4 +16,3 @@ messageClient.emit('pickup', {
   customer: randomCustomer,
   address: randomAddress
 });
-messageClient.on('received', console.log);

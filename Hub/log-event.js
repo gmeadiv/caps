@@ -8,7 +8,9 @@ const logEvent = (event) => (payload) => {
     payload,
   };
 
-console.log('EVENT', log)
+  console.log('EVENT', log)
+
+  return log;
 };
 
 module.exports = logEvent;

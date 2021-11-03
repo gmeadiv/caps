@@ -3,20 +3,23 @@
 const socketio = require('socket.io');
 const PORT = 3000;
 const server = socketio(PORT);
-const messages = server.of('/messages');
+const vendor = server.of('/vendor');
+const driver = server.of('/driver');
 
-messages.on('connection', (socket) => {
-  console.log('Socket is connected', socket.id);
+let order;
 
-  socket.on('pickup', logEvent('pickup'), (payload) => {
-    console.log(payload);
+vendor.on('connection', (socket) => {
+  console.log(`${socket.id} connected to vendor server`);
 
-    messages.emit('received', {
-      id: socket.id,
-      payload
-    })
-  })
-})
+  socket.on('pickup', (payload) => {order = payload;})
+
+});
+
+driver.on('connection', (socket) => {
+  console.log(`${socket.id} connected to driver server`);
+
+  server.emit('pickup', order)
+});
 
 const logEvent = require('./log-event.js');
 
