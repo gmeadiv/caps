@@ -2,14 +2,9 @@
   "name": "caps",
   "version": "1.0.0",
   "description": "",
-  "main": "EventEmitter.js",
+  "main": "MessageQueue.js",
   "scripts": {
-    "start": "node app.js",
-    "watch": "nodemon app.js",
-    "init:config": "sequelize init:config",
-    "db:create": "sequelize db:create",
-    "test-watch": "NODE_ENV=test jest --watchAll",
-    "test": "NODE_ENV=test jest --verbose --coverage --watch"
+    "test": "jest --verbose --coverage --watch"
   },
   "repository": {
     "type": "git",
@@ -26,10 +21,9 @@
   },
   "homepage": "https://github.com/gmeadiv/caps#readme",
   "dependencies": {
+    "faker": "^5.5.3",
     "jest": "^27.3.1",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0",
-    "pg": "^8.7.1",
-    "supertest": "^6.1.6"
+    "socket.io": "^4.3.1",
+    "socket.io-client": "^4.3.2"
   }
 }

@@ -5,9 +5,9 @@ const faker = require('faker');
 
 const randomTime = faker.date.soon();
 const randomStore = faker.company.companyName();
-const randomId = faker.random.alphaNumeric(15);
+const randomId = faker.datatype.uuid();
 const randomCustomer = faker.name.findName();
-const randomAddress = faker.address.streetAddress();
+const randomAddress = `${faker.address.streetAddress()} ${faker.address.city()}, ${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
 
 // VENDOR THANKS DRIVER
 ee.on('delivered', (event) => {
